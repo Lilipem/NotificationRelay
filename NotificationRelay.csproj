@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!--
+      OutputType WinExe = no console window appears when you run it.
+      (Use "Exe" temporarily if you want to see console output while debugging.)
+
+      TargetFramework: the "-windows10.0.17763.0" suffix is what unlocks
+      WinRT APIs (UserNotificationListener etc.). Without it, those types
+      don't exist. 17763 = Windows 10 version 1809; your machine is 19045,
+      so this is fine.
+
+      UseWindowsForms = gives us NotifyIcon, Form, Panel, etc.
+    -->
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+</Project>

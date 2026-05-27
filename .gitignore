@@ -1,0 +1,24 @@
+# Build outputs
+bin/
+obj/
+publish/
+
+# Visual Studio / Rider IDE files
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# Temp files from Register-Package.ps1
+*.msix
+*.pfx
+*.cer
+
+# OS files
+.DS_Store
+Thumbs.db
