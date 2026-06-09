@@ -97,7 +97,7 @@ class FcmSender
                 message = new
                 {
                     token        = _deviceToken,
-                    notification = new { title = notif.App, body },
+                    // notification = new { title = notif.App, body }, < cant have this if i want to save to room in app
                     data         = new Dictionary<string, string>
                     {
                         ["app"]   = notif.App,
