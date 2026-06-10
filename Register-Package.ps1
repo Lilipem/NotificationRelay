@@ -55,8 +55,9 @@ $manifest = @'
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap rescap">
+  IgnorableNamespaces="uap uap5 rescap">
 
   <Identity Name="com.NotificationRelay.Desktop"
             Publisher="CN=NotificationRelay"
@@ -89,6 +90,11 @@ $manifest = @'
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png" />
+      <Extensions>
+        <uap5:Extension Category="windows.startupTask" Executable="NotificationRelay.exe" EntryPoint="Windows.FullTrustApplication">
+          <uap5:StartupTask TaskId="NotificationRelayStartup" Enabled="true" DisplayName="Notification Relay" />
+        </uap5:Extension>
+      </Extensions>
     </Application>
   </Applications>
 

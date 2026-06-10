@@ -8,6 +8,7 @@ class TrayApplicationContext : ApplicationContext
     private readonly NotifyIcon _tray;
     private readonly TrayForm _form;
     private readonly NotificationWatcher _watcher;
+    private readonly FcmSender? _fcm;
 
 
     public TrayApplicationContext()
@@ -26,6 +27,8 @@ class TrayApplicationContext : ApplicationContext
 
         // MouseClick lets us check which mouse button was pressed.
         _tray.MouseClick += OnTrayClick;
+
+        _fcm = FcmSender.TryCreate();
 
         _watcher = new NotificationWatcher();
         _watcher.NotificationReceived += OnNotification;
@@ -58,6 +61,10 @@ class TrayApplicationContext : ApplicationContext
             _tray.Text = tip.Length > 127 ? tip[..127] : tip;
             _form.AddNotification(notif);
         }));
+
+        // Fire-and-forget FCM send on the thread-pool thread we're already on.
+        if (_fcm is not null)
+            _ = _fcm.SendAsync(notif);
     }
 
     private ContextMenuStrip BuildContextMenu()
